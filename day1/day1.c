@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <unistd.h>
 #include <stdio.h>
 
 int	*parse_first_list(char *input)
@@ -8,14 +9,12 @@ int	*parse_first_list(char *input)
 
 	if (!first_list)
 		return (NULL);
-	while (i < 1000)
+	while (i < 1000) 
 	{
-		first_list[i] = atoi(input);
-		while (*input != '\n' || *input != '\0')
-			printf("%c", *(input++));
+		first_list[i++] = atoi(input);
+		while (*input && *input != '\n')
+			input++;
 		input++;
-		printf("%d\n", i);
-		i++;
 	}
 	return (first_list);
 }
@@ -40,6 +39,9 @@ int	main(int argc, char **argv)
 	// Count the differences
 
 	printf("Total difference between the lists is : %d\n", total_sum);
+
+	free(first_list);
+	//free(second_list);
 
 	return (0);
 }
