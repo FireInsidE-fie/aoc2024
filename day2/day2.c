@@ -32,7 +32,6 @@ int	**parse_input(char *input)
 			i++;
 			j = 0;
 		}
-
 	}
 	return (parsed_numbers);
 }
@@ -40,6 +39,8 @@ int	**parse_input(char *input)
 int	main(int argc, char **argv)
 {
 	int	**numbers;
+	int	safe_sequences;
+	int	movement; // 1 for increasing, -1 for decreasing
 	int	i;
 	int	j;
 
@@ -56,4 +57,43 @@ int	main(int argc, char **argv)
 		printf("\n");
 	}
 
+	safe_sequences = 0;
+	i = 0;
+	while (i < INPUT_LINES)
+	{
+		j = 0;
+		if (numbers[i][j] > numbers[i][j + 1])
+			movement = -1;
+		else if (numbers[i][j] < numbers[i][j + 1])
+			movement = 1;
+		else
+		{
+			i++;
+			continue ;
+		}
+		while (j < MAX_LINE_LENGTH)
+		{
+			if (numbers[i][j + 1] == 0)
+			{
+				safe_sequences++;
+				break ;
+			}
+			if (movement < 1)
+			{
+				if (numbers[i][j + 1] - numbers[i][j] > 3
+						|| numbers[i][j + 1] - numbers[i][j] < 1)
+					break ;
+			}
+			else if (movement > 1)
+			{
+				if (numbers[i][j] - numbers[i][j + 1] > 3
+						|| numbers[i][j] - numbers[i][j + 1] < 1)
+					break ;
+			}
+			j++;
+		}
+		i++;
+	}
+
+	printf("Total number of safe sequences : %d\n", safe_sequences);
 }
