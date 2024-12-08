@@ -58,6 +58,11 @@ int	*parse_second_list(char *input)
 
 int	main(int argc, char **argv)
 {
+	/* Here's a better plan for ya : sort the numbers directly in the parsing,
+	 * then process pair by pair by just iterating over the two arrays in the 
+	 * same order
+	 * That ought to simplify things a bit!
+	*/
 	int	*first_list;
 	int	*second_list;
 	int	total_sum = 0;
@@ -86,12 +91,12 @@ int	main(int argc, char **argv)
 		second_min = second_max;
 		for (int j = 0; j < 1000; j++)
 		{
-			if (first_min > first_list[j] && first_list[j] > first_threshold)
+			if (first_min > first_list[j] && first_list[j] >= first_threshold)
 				first_min = first_list[j];
 		}
 		for (int j = 0; j < 1000; j++)
 		{
-			if (second_min > second_list[j] && second_list[j] > second_threshold)
+			if (second_min > second_list[j] && second_list[j] >= second_threshold)
 				second_min = second_list[j];
 		}
 		printf("%d\t%d\n", first_min, second_min);
