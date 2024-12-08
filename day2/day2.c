@@ -78,13 +78,13 @@ int	main(int argc, char **argv)
 				safe_sequences++;
 				break ;
 			}
-			if (movement < 1)
+			else if (movement > 0)
 			{
 				if (numbers[i][j + 1] - numbers[i][j] > 3
 						|| numbers[i][j + 1] - numbers[i][j] < 1)
 					break ;
 			}
-			else if (movement > 1)
+			else if (movement < 0)
 			{
 				if (numbers[i][j] - numbers[i][j + 1] > 3
 						|| numbers[i][j] - numbers[i][j + 1] < 1)
