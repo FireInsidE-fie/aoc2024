@@ -34,7 +34,10 @@ int	main(int argc, char **argv)
 				nb2 = atoi(data);
 				printf("Set nb2 to %d!\n", nb2);
 
-				sum += nb1 * nb2;
+				while (isdigit(*data))
+					data++;
+				if (*data == ')')
+					sum += nb1 * nb2;
 				
 				break ;
 			}
